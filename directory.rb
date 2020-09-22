@@ -20,6 +20,7 @@ end
 def print(names)
   names.each do |names|
     puts names
+  end
 end
 
 def print_footer(names)
