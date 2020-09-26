@@ -6,8 +6,8 @@ def print_header
 end
 
 def print(names)
-  names.each do |names|
-    puts "#{names[:name]} (#{names[:cohort]}) cohort"
+  names.each_with_index do |names, ind|
+    puts "#{ind + 1}. #{names[:name]} (#{names[:cohort]}) cohort"
   end
 end
 
@@ -25,11 +25,20 @@ def input_students
 
   while !name.empty? do
     students << {name: name, cohort: :november}
-    puts "now we have #{students.count} students"
+    puts "Now we have #{students.count} students"
     name = gets.chomp
   end
   return students
 end
+
+def interactive_menu
+  loop do
+  #1. print the menu and ask the user what to do
+  #2. read the input and save it into a variable
+  #3. do what the user has asked
+  end
+end
+
 
 students = input_students
 print_header
