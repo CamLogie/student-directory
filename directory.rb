@@ -47,19 +47,29 @@ def print_menu
   puts '9. Exit'
 end
 
+def selection_successful
+  puts 'Selection successful'
+  puts '--------------'.center(4)
+end
+
 def process(selection)
   case selection
   when "1"
+    selection_successful
     input_students
   when "2"
+    selection_successful
     print_header
     print_students_list(@students)
     print_footer(@students)
   when "3"
+    selection_successful
     save_students
   when "4"
+    selection_successful
     load_students
   when "9"
+    selection_successful
     exit
   else puts "I don't know what you meant, try again"
   end
@@ -72,8 +82,15 @@ def interactive_menu
   end
 end
 
+def ask_for_file
+puts 'Which file would you like to use?'
+file = STDIN.gets.chomp
+  return file
+end
+
 def save_students
-  file = File.open("students.csv", "w")
+  ask_for_file
+  file = File.open(ask_for_file)
   @students.each do |student|
     student_data = [student[:name], student[:cohort]]
     csv_line = student_data.join(",")
@@ -82,7 +99,7 @@ def save_students
   file.close
 end
 
-def load_students(filename = "students.csv")
+def load_students(filename = ask_for_file)
   file = File.open(filename, "r")
   file.readlines.each do |line|
     name, cohort = line.chomp.split(",")
